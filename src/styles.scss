@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+// /* You can add global styles to this file, and also import other style files */
+// @import "~bootstrap/dist/css/bootstrap.min.css";
+// @import "~bootstrap/scss/bootstrap";
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import 'ngx-toastr/toastr';
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+@import 'ngx-toastr/toastr-bs4-alert';
+
+.toast-success {
+    background-color: #4caf50 !important;
+  }
+  
+  .toast-error {
+    background-color: #f44336 !important;
+  }
+  
+  .toast-info {
+    background-color: #2196f3 !important;
+  }
+  
+  .toast-warning {
+    background-color: #ff9800 !important;
+  }
+  

@@ -1,0 +1,36 @@
+<div>
+  <div class="www-layout">
+    <section>
+      <div class="gap no-gap signin whitish medium-opacity">
+        <div
+          class="bg-image"
+          style="background-image: url(assets/images/resources/theme-bg.jpg)"
+        ></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="we-login-register">
+                <div class="form-title">
+                  <i class="fa fa-key"></i>Forget password
+                  <span>
+                    Enter your email address and we'll send you an email with
+                    instructions to reset your password.
+                  </span>
+                </div>
+                <form class="we-form">
+                  <input
+                    Name="email"
+                    type="email"
+                    placeholder="Email"
+                    [(ngModel)]="email"
+                  />
+                  <button data-ripple="" (click)="reset()">reset-pass</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

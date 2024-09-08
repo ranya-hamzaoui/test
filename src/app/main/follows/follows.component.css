@@ -1,0 +1,24 @@
+.follow {
+    display: flex;
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+.follow > li {
+    margin-right: 30px;
+}
+.followers {
+    max-height: 260px;
+    position: relative;
+}
+.followers > li figure img,
+.invition figure img,
+.nearly-pepls > figure img,
+.peoples > li figure img,
+.conversation-head > figure img,
+.peoples-mesg-box > ul li > figure img,
+.your-page > figure img,
+.notification-box > ul li figure img {
+    border-radius: 100%;
+}

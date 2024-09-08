@@ -1,0 +1,35 @@
+<div>
+  <div class="www-layout">
+    <section>
+      <div class="gap no-gap signin whitish medium-opacity">
+        <div
+          class="bg-image"
+          style="background-image: url(assets/images/resources/theme-bg.jpg)"
+        ></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="we-login-register">
+                <div class="form-title">
+                  <i class="fa fa-key"></i> Reset password
+                  <span> Enter your new Password and we will change it</span>
+                </div>
+                <form class="we-form">
+                  <input
+                    Name="newPass"
+                    type="password"
+                    placeholder="newPassword"
+                    [(ngModel)]="newPass"
+                  />
+                  <button data-ripple="" (click)="newPassword()">
+                    valider
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

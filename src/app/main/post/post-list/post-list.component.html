@@ -1,0 +1,176 @@
+<div class="loading" *ngIf="loading">
+    <img src="assets/images/lg.dual-ring-loader.gif"/>
+</div>
+
+<div *ngIf="posts && posts.length == 0" class="col-lg-12 no-publications">
+    This users doesn´t have
+    <i>any</i>
+    post.
+</div>
+<div id="publications" *ngIf="posts && posts.length > 0">
+    <div *ngFor="let post of posts">
+        <div class="loadMore">
+            <div class="central-meta item">
+                <div class="user-post">
+                    <div class="friend-info">
+                        <figure>
+                            <img src="assets/images/resources/admin.jpg" alt="" class="src">
+                        </figure>
+                        <div class="friend-name">
+                            <div class="more">
+
+                                <div class="more-post-optns">
+                                    <i class="ti-more-alt"></i>
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-pencil-square-o"></i>
+                                            <a (click)="onEdit(post);open(contentEdit)" type="button" data-toggle="modal" data-target="#exampleModal">
+                                                Edit Post</a>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-trash"></i>
+                                            <a (click)="onDelete(post)" type="button">
+                                                Delete Post</a>
+                                        </li>
+
+                                        <li class="bad-report">
+                                            <i class="fa fa-flag"></i>Report Post
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <ins>
+                                <!-- <a [routerLink]="['/profile', post?.user?._id]">
+                                    {{ post?.user }}</a> -->
+                            </ins>
+                            <span>
+                                <i class="fa fa-globe"></i>
+                                {{ post?.createdAt | date: 'short' }}
+                            </span>
+                        </div>
+                        <div class="post-meta">
+                            <figure>
+                                <div class="img-bunch">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6" style="font-weight:bold;">
+                                            <figure>
+                                                {{ post?.description }}
+                                                <br/>
+                                                <a href="#" title="" data-toggle="modal" data-target="#img-comt" *ngIf="!post?.photo">
+                                                    <img src="assets/images/resources/admin.jpg" alt=""/>
+                                                </a>
+                                            </figure>
+                                        </div>
+                                        <div class="we-video-info">
+                                            <ul>
+                                                <li>
+                                                  <button class="btn text-white" (click)="toggleLike(post)" 
+                                                  [ngStyle]="{'background-color': post?.likedByMe ? 'red' : 'gray'}"
+                                                  >
+                                                    <i class="fa" [ngClass]="post?.likedByMe ? 'fa-heart' : 'fa-thumbs-down'"></i>
+                                                    {{ post?.likedByMe ? post?.likeCount : '' }}
+                                                  </button>
+                                                </li>
+                                                <li>
+                                                    <span class="comment" title="Comments">
+                                                        <i class="fa fa-commenting"></i>
+                                                        <ins>{{ post?.comments?.length }}</ins>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                            <div class="coment-area" style="display: block">
+                                <ul class="we-comet">
+                                    <li class="post-comment">
+                                        <app-comment-create (createComment)="handleChange($event)" [post]="post"></app-comment-create>
+                                        <app-list-comment (deleteComment)="handleChange($event)" [comments]="post?.comments"></app-list-comment>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal UPDATE -->
+<ng-template #contentEdit let-modal>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Post Update</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="newpst-input">
+                        <form>
+                            <textarea rows="2" placeholder="Share some what you are thinking?" [(ngModel)]="postObj.content" name="content"></textarea>
+
+                            <div class="attachments">
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-image"></i>
+                                        <label class="fileContainer">
+                                            <input type="file"/>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancel" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                        <button (click)="updatePost()" type="button" class="btn btn-primary">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Users that Like this POST
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group" *ngIf="postLikers?.length>0">
+                <div *ngFor="let liker of postLikers">
+                    <p>{{ liker?.name }}
+                        :
+                        {{liker.email}}
+                    </p>
+                </div>
+            </div>
+            <div class="form-group" *ngIf="postLikers?.length<=0">
+                <div *ngFor="let liker of postLikers">
+                    <p>
+                        there are no Likers
+                    </p>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">
+            close
+        </button>
+    </div>
+</ng-template>
