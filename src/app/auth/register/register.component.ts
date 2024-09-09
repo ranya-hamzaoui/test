@@ -56,7 +56,7 @@ export class RegisterComponent {
     },err=> {
       const errorMsg = err?.error?.message || 'Registration Failed';
       console.log('errMsg', errorMsg)
-      this.toastService.error('Registration Failed', 'Login Failed')
+      this.toastService.error('Registration Failed')
     })
   }
 

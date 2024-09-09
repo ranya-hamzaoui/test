@@ -1,10 +1,14 @@
 
 <div class="container">
-  <h4 class="widget-title">Followed</h4>
+  <h4 class="widget-title"> Suggestions </h4>
+  <div *ngIf="follows && follows.length == 0" class="col-lg-12 no-publications">
+    <h6 class="text-center"> No Users <i></i>.</h6>
+ </div>
+
   <ul
     class="followers ps-container ps-theme-default ps-active-y"
     data-ps-id="2a88fe49-853c-35b6-5b5e-862074616e84"
-    *ngFor="let user of fakefollows"
+    *ngFor="let user of follows"
   >
     <li>
       <figure>
@@ -15,7 +19,7 @@
         <h4>
           <a [routerLink]="['/profile', user?._id]">{{ user?.name }}</a>
         </h4>
-        <a (click)="addFollow(user?._id)" title="" class="underline">unsubscribe</a>
+        <a (click)="addFollow(user)" class="text-bold underline">Subscribe</a>
       </div>
     </li>
   

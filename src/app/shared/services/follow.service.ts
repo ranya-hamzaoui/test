@@ -13,9 +13,9 @@ export class FollowService {
   constructor(private http: HttpClient) {
   }
 
-  addFollow(follow: User): Observable<any> {
-    let args = JSON.stringify({follow});
-    return this.http.post(this.url, args);
+  addFollow(follow: any): Observable<any> {
+    // let args = JSON.stringify({follow});
+    return this.http.post(this.url, {followed : follow});
   }
 
   deleteFollow(idFollow: User): Observable<any> {
@@ -30,6 +30,10 @@ export class FollowService {
   getFollowed(userId = null, page = 1): Observable<any> {
 
     var url = this.url + 'followed/';
-    return this.http.get(url);
+    return this.http.get<User[]>(url);
+  }
+
+  getNotFollowed() : Observable<User[]>{
+    return this.http.get<User[]>(`${environment.baseurl}/not-followed`);
   }
 }
