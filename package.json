@@ -12,7 +12,6 @@
     "format": "prettier --write 'src/**/*.{ts,html,css}'",
     "pre-commit": "pretty-quick --staged",
     "prepare": "husky"
-
   },
   "lint-staged": {
     "*.ts": [
