@@ -1,4 +1,4 @@
-name: Angular CI/CD
+name: Angular App CI/CD
 
 on:
   # Trigger the workflow on push or pull request to the main branch
@@ -38,6 +38,4 @@ jobs:
 
     # Étape 5 : Déploiement vers GitHub Pages
     - name: Deploy to GitHub Pages
-      run: npx angular-cli-ghpages --dir=dist/social-network-client # Remplacez "angular-app-name" par le nom de votre projet
-      env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npx angular-cli-ghpages --dir=dist/social-network-client --repo=https://github.com/ranya-hamzaoui/test.git
