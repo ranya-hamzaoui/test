@@ -58,7 +58,7 @@ export class RegisterComponent {
         this.router.navigateByUrl('/');
       },
       (err) => {
-        const errorMsg = err?.error?.message || 'Registration Failed';
+        const errorMsg = err?.error?.message || 'Registration Failed !!!!!!!';
         console.log('errMsg', errorMsg);
         this.toastService.error('Registration Failed');
       }
