@@ -1,4 +1,4 @@
-import { Component,EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Comment } from 'src/app/core/models';
 import { CommentService } from 'src/app/shared/services/comment.service';
@@ -6,33 +6,36 @@ import { CommentService } from 'src/app/shared/services/comment.service';
 @Component({
   selector: 'app-list-comment',
   templateUrl: './list-comment.component.html',
-  styleUrls: ['./list-comment.component.css']
+  styleUrls: ['./list-comment.component.css'],
 })
 export class ListCommentComponent implements OnInit {
-  @Input('comments') comments! :Comment[] 
-  @Output('deleteComment') deleteComment = new EventEmitter<any>()
+  @Input('comments') comments!: Comment[];
+  @Output('deleteComment') deleteComment = new EventEmitter<any>();
 
   formValue!: FormGroup;
-  CommentObj! : Comment; 
+  CommentObj!: Comment;
 
-  initialItems = 3; 
+  initialItems = 3;
   displayedItems = this.initialItems;
 
-  constructor(private commentService: CommentService,private formBuilder: FormBuilder) { }
+  constructor(
+    private commentService: CommentService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.formValue = this.formBuilder.group({
-      id:[''],
+      id: [''],
       content: [''],
-      image:''
-  })
+      image: '',
+    });
   }
   onDelete(commentId: string): void {
     this.commentService.deleteComment(commentId).subscribe({
-      next: (res: any) => {
+      next: () => {
         this.deleteComment.emit(true);
       },
-      error: (err) => console.error('Error deleting comment:', err)
+      error: (err) => console.error('Error deleting comment:', err),
     });
   }
 
@@ -46,8 +49,8 @@ export class ListCommentComponent implements OnInit {
   // For use after when we want to get by backend ...
   getComment(): void {
     this.commentService.getCommentByPost().subscribe({
-      next: (comments: Comment[]) => this.comments = comments,
-      error: (err) => console.error('Error fetching comments:', err)
+      next: (comments: Comment[]) => (this.comments = comments),
+      error: (err) => console.error('Error fetching comments:', err),
     });
   }
 }

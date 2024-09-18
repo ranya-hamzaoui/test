@@ -11,33 +11,34 @@
       </form>
     </div>
     <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" >Acceuil</a>
-    </div>
-    
-    <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" >All Posts</a>
+      <a routerLink="/home" routerLinkActive="router-link-active">Acceuil</a>
     </div>
 
     <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" > My Posts</a>
+      <a routerLink="/home" routerLinkActive="router-link-active">All Posts</a>
     </div>
 
     <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" >Followd Posts</a>
-    </div>
-    <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" > </a>
+      <a routerLink="/home" routerLinkActive="router-link-active"> My Posts</a>
     </div>
 
     <div class="page-name">
-      <a routerLink="/home" routerLinkActive="router-link-active" ></a>
+      <a routerLink="/home" routerLinkActive="router-link-active"
+        >Followd Posts</a
+      >
     </div>
-    <div class="d-flex justify-content-end text-white" style="font-size: 14px;">
+    <div class="page-name">
+      <a routerLink="/home" routerLinkActive="router-link-active"> </a>
+    </div>
+
+    <div class="page-name">
+      <a routerLink="/home" routerLinkActive="router-link-active"></a>
+    </div>
+    <div class="d-flex justify-content-end text-white" style="font-size: 14px">
       <div class="u">
-        <span class=" page-name">{{ user?.name }}</span>
+        <span class="page-name">{{ user?.name }}</span>
         <a (click)="logout()" class="page-name logout-button">Logout</a>
       </div>
     </div>
-
   </div>
 </div>

@@ -1,11 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Injectable({
@@ -18,7 +12,7 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot) {
-    let isAuth = this.authservice.isConnected();
+    const isAuth = this.authservice.isConnected();
     if (isAuth) {
       return true;
     }

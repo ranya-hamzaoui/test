@@ -10,7 +10,9 @@
           <div class="row">
             <div class="col-lg-8">
               <div class="big-ghalta">
-                <figure><img src="assets/images/logo2.png" alt="" /></figure>
+                <figure>
+                  <img src="assets/images/logo2.png" alt="" />
+                </figure>
                 <h1>Welcome to the Pitnik</h1>
                 <p>
                   Pitnik is a social network template that can be used to
@@ -63,12 +65,30 @@
                     world.</span
                   >
                 </div>
-                <form  [formGroup]="formLogin"  (submit)="login()" class="we-form">
-                  <input formControlName="email" type="email" placeholder="Email" />
+                <form
+                  [formGroup]="formLogin"
+                  (submit)="login()"
+                  class="we-form"
+                >
+                  <input
+                    formControlName="email"
+                    type="email"
+                    placeholder="Email"
+                  />
 
-                  <input formControlName="password" type="password" placeholder="Password" />
+                  <input
+                    formControlName="password"
+                    type="password"
+                    placeholder="Password"
+                  />
 
-                  <button data-ripple="" [disabled]="formLogin.invalid" type="submit">sign in</button>
+                  <button
+                    data-ripple=""
+                    [disabled]="formLogin.invalid"
+                    type="submit"
+                  >
+                    sign in
+                  </button>
                   <a routerLink="/register">vous n'avez pas du compte</a>
                   <br />
                   <a routerLink="/forget-pass">mot de passe oublié</a>

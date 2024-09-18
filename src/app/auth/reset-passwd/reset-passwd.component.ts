@@ -16,10 +16,9 @@ export class ResetPasswdComponent {
     private authService: AuthService,
     private router: Router,
     private toastr: ToastrService
-
   ) {
     this.activatedRoute.params.subscribe((params: any) => {
-      this.resetLink = params["resetLink"];
+      this.resetLink = params['resetLink'];
     });
   }
 
@@ -29,18 +28,18 @@ export class ResetPasswdComponent {
       return;
     }
 
-    let data = {
+    const data = {
       resetLink: this.resetLink,
       newPass: this.newPass,
     };
 
     this.authService.resetPassword(this.resetLink, this.newPass).subscribe(
-      (res: any) => {
+      () => {
         this.toastr.success('Password reset successfully!', 'Success');
         this.router.navigateByUrl('/login');
       },
       (err) => {
-       console.log(err.error.message || 'Failed to reset password', 'Error');
+        console.log(err.error.message || 'Failed to reset password', 'Error');
       }
     );
   }

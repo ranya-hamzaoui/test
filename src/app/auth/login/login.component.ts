@@ -10,43 +10,48 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  
   formLogin!: FormGroup;
-  submitted : boolean = false;
-  Loading : boolean = false;
+  submitted: boolean = false;
+  Loading: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private authservice: AuthService,
-    private router: Router, 
-    private toastService : ToastrService
+    private router: Router,
+    private toastService: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.formLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      email: ['nadine@gmail.com', [Validators.required, Validators.email]],
+      password: ['rania20', [Validators.required]],
     });
   }
 
   login(): void {
-    this.submitted = true; 
+    this.submitted = true;
 
-    if (this.formLogin.invalid) { 
-      this.Loading = false ;
-      this.toastService.error('Please enter valid login credentials', 'Invalid Request');
+    if (this.formLogin.invalid) {
+      this.Loading = false;
+      this.toastService.error(
+        'Please enter valid login credentials',
+        'Invalid Request'
+      );
       return;
     }
-    this.Loading = true ;
-    this.authservice.Login(this.formLogin.value)
-    .subscribe(
-      (credentiels:any) =>{
-        this.router.navigateByUrl('/home')
-        this.toastService.success('Authentification with Sucess', 'Login Succes')
+    this.Loading = true;
+    this.authservice.Login(this.formLogin.value).subscribe(
+      () => {
+        this.router.navigateByUrl('/home');
+        this.toastService.success(
+          'Authentification with Sucess',
+          'Login Succes'
+        );
       },
-      (err :any) => {console.log('err login')
-      this.toastService.error('Authentification Failed', 'Login Failed') 
-    }
-    )
+      (err: any) => {
+        console.log('err login', err);
+        this.toastService.error('Authentification Failed', 'Login Failed');
+      }
+    );
   }
 
   onReset() {

@@ -32,11 +32,11 @@ export class AuthService {
   Login(paramsLogin: LoginRequest): Observable<any> {
     return this.http.post(this.urlLogin, paramsLogin).pipe(
       map(
-        (resp:any) => {
+        (resp: any) => {
           localStorage.clear();
-          this.doLoginUser(resp["data"]);
+          this.doLoginUser(resp['data']);
         },
-        (error :any) => {
+        (error: any) => {
           this.doLogoutUser();
           console.log(error.error);
         }
@@ -48,17 +48,19 @@ export class AuthService {
     return this.http.post(`${environment.baseurl}/register`, RequestRegister);
   }
 
-  Logout() : Observable<any> {
-    const refreshToken = this.getRefreshToken()
-    return this.http.post(`${environment.baseurl}/logout`,{ refreshToken });
+  Logout(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+    return this.http.post(`${environment.baseurl}/logout`, {
+      refreshToken,
+    });
   }
 
-  forgetPass(data: any) : Observable<any>  {
+  forgetPass(data: any): Observable<any> {
     return this.http.put(`${environment.baseurl}/user/forgetPass`, data);
   }
 
-  resetPassword(email: string,newPassword: string): Observable<any> {
-    let params = {email,password: newPassword};
+  resetPassword(email: string, newPassword: string): Observable<any> {
+    const params = { email, password: newPassword };
     return this.http.put(`${environment.baseurl}/user/reset`, params);
   }
 
@@ -68,49 +70,54 @@ export class AuthService {
     this.router.navigate(['/pages/login']);
   }
 
-  isConnected() : boolean {
+  isConnected(): boolean {
     return !!this.getJwtToken();
   }
-  getJwtToken() : string | null {
+  getJwtToken(): string | null {
     return localStorage.getItem(this.TEXT.jwtToken);
   }
-  private doLoginUser(resp : {token:string,refreshToken:string,user:User}) : void {
-    this.storeTokens(resp.token,resp.refreshToken);
-    localStorage.setItem(this.TEXT.currentUser,JSON.stringify(resp.user));
+  private doLoginUser(resp: {
+    token: string;
+    refreshToken: string;
+    user: User;
+  }): void {
+    this.storeTokens(resp.token, resp.refreshToken);
+    localStorage.setItem(this.TEXT.currentUser, JSON.stringify(resp.user));
     this.currentUserSubject.next(resp.user);
   }
-  private doLogoutUser() : void {
+  private doLogoutUser(): void {
     this.removeToken();
   }
-  private getRefreshToken() : string | null {
+  private getRefreshToken(): string | null {
     return localStorage.getItem(this.TEXT.refreshToken);
   }
 
-  private storeTokens(token: string,refresh:string) {
-    localStorage.setItem(this.TEXT.jwtToken,token);
-    localStorage.setItem(this.TEXT.refreshToken,refresh);
+  private storeTokens(token: string, refresh: string) {
+    localStorage.setItem(this.TEXT.jwtToken, token);
+    localStorage.setItem(this.TEXT.refreshToken, refresh);
   }
 
-  removeToken() : void {
+  removeToken(): void {
     localStorage.removeItem(this.TEXT.jwtToken);
     localStorage.removeItem(this.TEXT.jwtToken);
     localStorage.removeItem(this.TEXT.currentUser);
-    this.currentUserSubject.next({} as User)
+    this.currentUserSubject.next({} as User);
   }
 
-  refreshToken() : Observable<any>  {
-    const refreshToken = this.getRefreshToken()
-    return this.http.post<any>(this.urlRefreshToken, {refreshToken}).pipe( tap((res: any) => {
-          this.storeTokens(res['data']['token'],res['data']['refreshToken']);
-        })
-      );
+  refreshToken(): Observable<any> {
+    const refreshToken = this.getRefreshToken();
+    return this.http.post<any>(this.urlRefreshToken, { refreshToken }).pipe(
+      tap((res: any) => {
+        this.storeTokens(res['data']['token'], res['data']['refreshToken']);
+      })
+    );
   }
 
-  getIdentity() : string | null{
+  getIdentity(): string | null {
     return JSON.parse(localStorage.getItem(this.TEXT.currentUser)!)._id ?? null;
   }
 
-  getCurrentUser() : any {
-    return JSON.parse(localStorage.getItem(this.TEXT.currentUser)!)
+  getCurrentUser(): any {
+    return JSON.parse(localStorage.getItem(this.TEXT.currentUser)!);
   }
 }

@@ -19,16 +19,22 @@ export class ForgetPasswdComponent {
 
   reset() {
     if (!this.email) {
-      this.toastrService.error('Please provide a valid email address.', 'Invalid Request');
+      this.toastrService.error(
+        'Please provide a valid email address.',
+        'Invalid Request'
+      );
       return;
     }
 
     this.loading = true;
 
-    this.authService.forgetPass({ email:this.email }).subscribe(
-      (res: any) => {
+    this.authService.forgetPass({ email: this.email }).subscribe(
+      () => {
         this.loading = false;
-        this.toastrService.success('Please check your email for reset instructions.', 'Reset Email Sent');
+        this.toastrService.success(
+          'Please check your email for reset instructions.',
+          'Reset Email Sent'
+        );
         this.router.navigate(['/']); // Redirect to login after success
       },
       (err: any) => {

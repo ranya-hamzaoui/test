@@ -10,21 +10,20 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./nav.component.css'],
 })
 export class NavComponent implements OnInit {
-  refreshToken :string = ''
-  user! : User  
+  refreshToken: string = '';
+  user!: User;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private userApi: UserService
-
   ) {}
 
   ngOnInit(): void {
-    this.getProfile()
+    this.getProfile();
   }
 
-   logout(): void {
+  logout(): void {
     this.authService.removeToken();
     this.router.navigateByUrl('/');
 
@@ -36,16 +35,15 @@ export class NavComponent implements OnInit {
     //     console.error('Logout error:', err);
     //   }
     // });
-   }
-    getProfile(): void {
-      this.userApi.getProfile().subscribe({
-        next: (res: any) => {
-          this.user = res.data?.user || null; 
-        },
-        error: (err) => {
-          console.error('Profile fetch error:', err);
-        }
-      });
-    }
-
+  }
+  getProfile(): void {
+    this.userApi.getProfile().subscribe({
+      next: (res: any) => {
+        this.user = res.data?.user || null;
+      },
+      error: (err) => {
+        console.error('Profile fetch error:', err);
+      },
+    });
+  }
 }

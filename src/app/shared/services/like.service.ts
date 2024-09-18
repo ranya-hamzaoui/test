@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -9,9 +9,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class LikeService {
-
   private baseUrl = `${environment.baseurl}/like`;
-  
+
   constructor(private http: HttpClient) {}
 
   allLikeByPost(): Observable<Like[]> {
@@ -19,14 +18,16 @@ export class LikeService {
   }
 
   addLike(postId: any): Observable<Like[]> {
-    return this.http.post<Like[]>(`${this.baseUrl}/${postId}`, {params:{id:postId}});
+    return this.http.post<Like[]>(`${this.baseUrl}/${postId}`, {
+      params: { id: postId },
+    });
   }
 
   removeLike(id: any): Observable<any> {
     return this.http.delete<any>(`${environment.baseurl}/delete-like/${id}`);
   }
-  
+
   getLikes(postId: string): Observable<Like[]> {
-    return this.http.get<Like[]>(`${environment.baseurl}/get-likes/${postId}`) }
+    return this.http.get<Like[]>(`${environment.baseurl}/get-likes/${postId}`);
   }
-  
+}

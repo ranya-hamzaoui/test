@@ -1,3 +1,4 @@
+import { Comment } from './comment';
 import { User } from './user';
 export interface Post {
   _id: string;
@@ -6,9 +7,7 @@ export interface Post {
   photo: string;
   createdAt: string;
   user: User;
-  comments?: any;
-  likes?: any;
+  comments?: Comment[];
   likedByMe?: boolean;
-  likeCount? : number;
-  content? : string
+  likeCount?: number;
 }

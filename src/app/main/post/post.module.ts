@@ -10,9 +10,12 @@ import { CommentCreateComponent } from './comment-create/comment-create.componen
 import { ListCommentComponent } from './list-comment/list-comment.component';
 
 @NgModule({
-  declarations: [PostListComponent, PostCreateComponent,
-    CommentCreateComponent,ListCommentComponent
-    ],
+  declarations: [
+    PostListComponent,
+    PostCreateComponent,
+    CommentCreateComponent,
+    ListCommentComponent,
+  ],
   imports: [
     CommonModule,
     PostRoutingModule,

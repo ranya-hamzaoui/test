@@ -6,7 +6,7 @@ import {
   HttpHandler,
   HttpEvent,
 } from '@angular/common/http';
-import {catchError,map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -20,15 +20,14 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-
     const token: string = this.authserice.getJwtToken()!;
-    
+
     if (token) {
       request = request.clone({
         headers: request.headers.set('Authorization', `Bearer ${token}`),
       });
     }
-   
+
     return next.handle(request);
   }
 
@@ -36,7 +35,7 @@ export class AuthInterceptor implements HttpInterceptor {
     const refreshToken: string = localStorage.getItem('refreshToken')!;
 
     return this.authserice.refreshToken().pipe(
-      map((token:any) => {
+      map((token: any) => {
         console.log('token in refresh', token);
 
         //return next.handle(TokenInterceptor.addToken(request, token.token));

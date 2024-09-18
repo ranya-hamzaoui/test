@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
 import { PostService } from 'src/app/shared/services/post.service';
 import { TEXT } from '../../shared/constants/text';
 
@@ -10,8 +10,7 @@ import { TEXT } from '../../shared/constants/text';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  
-  TEXT= TEXT;
+  TEXT = TEXT;
   posts: any[] = [];
   page!: number;
   private unsubscribe$ = new Subject<void>();
@@ -22,17 +21,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getPosts() {
-   this.postservice.getPostsByLike(this.page)
-   .pipe(takeUntil(this.unsubscribe$))
-   .subscribe((resp: any) => {
-      this.posts = resp;
-    }, err=> {
-      console.log('error',err)
-    });
+    this.postservice
+      .getPostsByLike(this.page)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        (resp: any) => {
+          this.posts = resp;
+        },
+        (err) => {
+          console.log('error', err);
+        }
+      );
   }
 
-
-  handleChange(event: Boolean): void {
+  handleChange(event: boolean): void {
     // Refresh posts when the event is triggered
     this.getPosts();
   }

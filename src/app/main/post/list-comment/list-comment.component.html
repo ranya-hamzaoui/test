@@ -1,50 +1,53 @@
-
 <div *ngIf="comments && comments.length == 0" class="col-lg-12 no-publications">
-   <h6 class="text-center"> No Comments <i></i>.</h6>
+  <h6 class="text-center">No Comments <i></i>.</h6>
 </div>
-<div class="container mt-4"  *ngIf="comments && comments.length> 0">
+<div class="container mt-4" *ngIf="comments && comments.length > 0">
   <div class="d-flex" *ngFor="let comment of comments.slice(0, displayedItems)">
     <div class="comet-avatar">
       <!-- <img src="http://localhost:3200/getfile/" alt=""> -->
-      <img src="assets/images/resources/nearly1.jpg" alt="" class="src">
+      <img src="assets/images/resources/nearly1.jpg" alt="" class="src" />
     </div>
-  
+
     <div class="we-comment">
       <div class="more">
-        <div class="more-post-optns"  >
+        <div class="more-post-optns">
           <i class="ti-more-alt"></i>
           <ul>
-            <li><i class="fa fa-trash"></i>
-              <a (click)="onDelete(comment._id)" type="button" type="button"> Delete Comment</a>
+            <li>
+              <i class="fa fa-trash"></i>
+              <a (click)="onDelete(comment._id)" type="button" type="button">
+                Delete Comment</a
+              >
+            </li>
           </ul>
         </div>
       </div>
-      <h5><a href="time-line.html" title="">{{comment.user}}</a></h5>
-      <br>
-      <p style="color: gray;"> {{comment?.text}}</p>
+      <h5>
+        <a href="time-line.html" title="">{{ comment.user }}</a>
+      </h5>
+      <br />
+      <p style="color: gray">{{ comment?.text }}</p>
       <!-- <input type="text" [value]="comment.text" [id]="comment._id" disabled> -->
       <div class="inline-itms">
-        <span>{{ comment?.createdAt | date: 'yyyy-MM-dd HH:mm'}}</span>
+        <span>{{ comment?.createdAt | date: 'yyyy-MM-dd HH:mm' }}</span>
       </div>
     </div>
   </div>
   <div class="text-center mt-3">
-    <button 
-      class="btn btn-primary btn-sm" 
-      *ngIf="displayedItems < comments.length" 
-      (click)="showMore()">
+    <button
+      class="btn btn-primary btn-sm"
+      *ngIf="displayedItems < comments.length"
+      (click)="showMore()"
+    >
       Show More
     </button>
-    
-    <button 
-      class="btn btn-secondary btn-sm" 
-      *ngIf="displayedItems > initialItems" 
-      (click)="showLess()">
+
+    <button
+      class="btn btn-secondary btn-sm"
+      *ngIf="displayedItems > initialItems"
+      (click)="showLess()"
+    >
       Show Less
     </button>
-  </div>   
+  </div>
 </div>
-
-
-
-

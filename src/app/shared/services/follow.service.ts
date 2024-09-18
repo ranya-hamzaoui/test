@@ -10,12 +10,11 @@ import { User } from 'src/app/core/models';
 export class FollowService {
   private url: string = `${environment.baseurl}/follow`;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   addFollow(follow: any): Observable<any> {
     // let args = JSON.stringify({follow});
-    return this.http.post(this.url, {followed : follow});
+    return this.http.post(this.url, { followed: follow });
   }
 
   deleteFollow(idFollow: User): Observable<any> {
@@ -23,17 +22,16 @@ export class FollowService {
   }
 
   getMyFollows(page = 1): Observable<User[]> {
-    let url = this.url + 'ed-user/'+ page;
+    const url = this.url + 'ed-user/' + page;
     return this.http.get<User[]>(url);
   }
 
   getFollowed(userId = null, page = 1): Observable<any> {
-
-    var url = this.url + 'followed/';
+    const url = this.url + 'followed/';
     return this.http.get<User[]>(url);
   }
 
-  getNotFollowed() : Observable<User[]>{
+  getNotFollowed(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.baseurl}/not-followed`);
   }
 }

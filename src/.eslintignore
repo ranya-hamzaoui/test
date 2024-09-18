@@ -1,0 +1,5 @@
+# Ignore the environments folder
+src/assets/
+
+# Ignore a specific file
+src/app/some-file.ts

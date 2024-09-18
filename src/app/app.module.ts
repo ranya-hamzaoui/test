@@ -30,12 +30,19 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
       preventDuplicates: true,
       progressBar: true,
       closeButton: true,
-    })
-    ],
+    }),
+  ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
