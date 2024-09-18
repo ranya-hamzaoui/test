@@ -7,7 +7,8 @@ export interface Post {
   photo: string;
   createdAt: string;
   user: User;
-  comments?: Comment[];
+  comments: Comment[];
   likedByMe?: boolean;
   likeCount?: number;
+  content ?: string
 }

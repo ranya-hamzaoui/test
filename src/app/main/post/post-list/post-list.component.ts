@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PostService } from 'src/app/shared/services/post.service';
-import { Post } from 'src/app/core/models';
+import { Comment, Post } from 'src/app/core/models';
 import { LikeService } from 'src/app/shared/services/like.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PostListComponent implements OnInit {
   @Input() posts!: Post[];
-  @Input('comments') comments: any[] = [];
+  @Input('comments') comments: Comment[] = [];
   @Input() loading: boolean = false;
   @Output('changePost') changePost = new EventEmitter<boolean>();
   closeResult = '';
@@ -26,6 +26,7 @@ export class PostListComponent implements OnInit {
     photo: '',
     createdAt: '',
     description: '',
+    comments : []
   };
   postLikers: any;
   noMore: boolean = false;

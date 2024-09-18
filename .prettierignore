@@ -1,5 +1,10 @@
-node_modules
-dist
-coverage/
-src/assets
 # Ignore files
+node_modules
+package.json
+package-lock.json
+dist
+e2e/**
+src/assets/**
+coverage/
+karma.conf.js
+commitlint.config.js

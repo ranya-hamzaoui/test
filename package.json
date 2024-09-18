@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint src/app",
-    "lint:fix": "ng lint src/app --fix",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
     "format": "prettier --write 'src/**/*.{ts,html,css}'",
     "pre-commit": "pretty-quick --staged",
     "prepare": "husky"
@@ -48,6 +48,7 @@
     "zone.js": "~0.12.0"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^15.0.0",
     "@angular-devkit/build-angular": "^15.2.11",
     "@angular-eslint/builder": "18.3.1",
     "@angular-eslint/eslint-plugin": "18.3.1",
