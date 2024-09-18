@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  title: string = 'SIGN UPppp';
+  title: string = 'SIGN UP';
   formRegister!: FormGroup;
   submitted = false;
 

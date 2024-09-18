@@ -10,8 +10,9 @@
     "lint": "ng lint src/app",
     "lint:fix": "ng lint src/app --fix",
     "format": "prettier --write 'src/**/*.{ts,html,css}'",
-    "pre-commit": "lint-staged",
+    "pre-commit": "pretty-quick --staged",
     "prepare": "husky"
+
   },
   "lint-staged": {
     "*.ts": [
