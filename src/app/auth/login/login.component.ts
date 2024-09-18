@@ -47,8 +47,8 @@ export class LoginComponent implements OnInit {
           'Login Succes'
         );
       },
-      (err: any) => {
-        console.log('err login', err);
+      (err: unknown) => {
+        console.log('err loginnnnnnnnnn', err);
         this.toastService.error('Authentification Failed', 'Login Failed');
       }
     );

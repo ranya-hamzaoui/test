@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { MustMatch } from 'src/app/core/helpers/must-match.validator';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class RegisterComponent {
   title: string = 'SIGN UP';
   formRegister!: FormGroup;
-  submitted = false;
+  submitted = false
 
   constructor(
     private formBuilder: FormBuilder,

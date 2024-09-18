@@ -8,4 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'social-network-client';
   isConnected = false;
+  msg: string = '';
 }
