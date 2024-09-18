@@ -32,10 +32,10 @@ jobs:
     - name: Run lint
       run: npm run lint
 
-    # Step 6: Build the project
+    # Step 5: Build the project
     - name: Build project
       run: npm run build
 
-    # Étape 5 : Déploiement vers GitHub Pages
+    # Étape 6 : Déploiement vers GitHub Pages
     - name: Deploy to GitHub Pages
       run: npx angular-cli-ghpages --dir=dist/social-network-client --repo=https://github.com/ranya-hamzaoui/test.git
