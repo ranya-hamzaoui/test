@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseurl :''
+  baseurl: 'http://social-media-network.domain:3000/api',
 };
