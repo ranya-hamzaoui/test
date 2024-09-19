@@ -1,5 +1,0 @@
-# Ignore the environments folder
-src/assets/
-
-# Ignore a specific file
-src/app/shared

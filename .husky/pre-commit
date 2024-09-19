@@ -1,5 +1,0 @@
-#!/bin/sh
-#."$(dirname "$0")/_/husky.sh"
-echo "*******************************"
-echo "run lint-staged before Commit"
-npx lint-staged
