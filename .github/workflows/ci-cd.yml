@@ -42,6 +42,6 @@ jobs:
 
     # Étape 6 : Déploiement vers GitHub Pages
     - name: Deploy to GitHub Pages
-      run: npx angular-cli-ghpages --dir=dist/social-network-client --repo=https://github.com/ranya-hamzaoui/test.git --no-silent
+      run: npx angular-cli-ghpages --dir=dist/social-network-client --repo=https://${{ secrets.GITHUB_TOKEN }}:x-oauth-basic@github.com/ranya-hamzaoui/test.git --branch=gh-pages --no-silent
       env:
        ACTIONS_RUNNER_DEBUG: true
