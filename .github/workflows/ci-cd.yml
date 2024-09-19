@@ -39,7 +39,6 @@ jobs:
       run: |
         git config --global user.email "hamzaouirourou2@gmail.com" 
         git config --global user.name "Rania Hamzaoui"
-
     # Étape 6 : Déploiement vers GitHub Pages
     - name: Deploy to GitHub Page
       run: npx angular-cli-ghpages --dir=dist/social-network-client --repo=https://${{ secrets.PAT_TOKEN }}:x-oauth-basic@github.com/ranya-hamzaoui/test.git --branch=gh-pages --no-silent
