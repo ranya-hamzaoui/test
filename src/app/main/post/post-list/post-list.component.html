@@ -14,7 +14,8 @@
         <div class="user-post">
           <div class="friend-info">
             <figure>
-              <img src="assets/images/resources/admin.jpg" alt="" class="src" />
+              <img  crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{post.user.photo}}">
+              <!-- <img  crossOrigin ="anonymous" alt="author" [src]="post.user?.photo ? 'http://localhost:4000/api/getImageFile/{{post.user.photo}}' : 'assets/images/resources/ceo1.jpg' "> -->
             </figure>
             <div class="friend-name">
               <div class="more">
@@ -63,9 +64,8 @@
                           title=""
                           data-toggle="modal"
                           data-target="#img-comt"
-                          *ngIf="!post?.photo"
                         >
-                          <img src="assets/images/resources/admin.jpg" alt="" />
+                          <img crossOrigin ="anonymous" [src]="!post?.photo ? 'assets/images/resources/admin.jpg' : '{{urlImage}}/{{post.photo}}' " alt="" />
                         </a>
                       </figure>
                     </div>
@@ -108,10 +108,12 @@
                       (createComment)="handleChange($event)"
                       [post]="post"
                     ></app-comment-create>
-                    <app-list-comment
+                     <div class="mx-2 px-2 py-1">
+                      <app-list-comment
                       (deleteComment)="handleChange($event)"
                       [comments]="post.comments"
                     ></app-list-comment>
+                     </div>
                   </li>
                 </ul>
               </div>

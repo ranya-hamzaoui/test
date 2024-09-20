@@ -7,9 +7,22 @@ import { PostModule } from './post/post.module';
 import { SharedModule } from '../shared/shared.module';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { MainRoutingModule } from './main-routing.module';
+import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './profile/about/about.component';
+import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
+import { MyabonnesComponent } from './profile/myabonnes/myabonnes.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [HomeComponent, NavComponent, FollowsComponent],
+  declarations: [
+    HomeComponent,
+    NavComponent,
+    FollowsComponent,
+    ProfileComponent,
+    AboutComponent,
+    ProfileEditComponent,
+    MyabonnesComponent
+  ],
   imports: [
     CommonModule,
     RouterOutlet,
@@ -18,6 +31,8 @@ import { MainRoutingModule } from './main-routing.module';
     PostModule,
     SharedModule,
     MainRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
 })
 export class MainModule {}

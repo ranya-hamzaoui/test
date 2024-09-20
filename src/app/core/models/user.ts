@@ -4,7 +4,11 @@ export interface User {
   name: string;
   email: string;
   image?: string;
-  imageCover: string;
+  imageCover?: string;
   password: string;
-  Gender: string;
+  gender: string;
+  dateBirth?: string;
+  Gender : string;
+  createdAt: Date;
+  photo : string;
 }

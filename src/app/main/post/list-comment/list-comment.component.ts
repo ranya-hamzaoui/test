@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Comment } from 'src/app/core/models';
 import { CommentService } from 'src/app/shared/services/comment.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-list-comment',
@@ -17,7 +18,7 @@ export class ListCommentComponent implements OnInit {
 
   initialItems = 3;
   displayedItems = this.initialItems;
-
+  urlImage = environment.baseurl + '/getImageFile';
   constructor(
     private commentService: CommentService,
     private formBuilder: FormBuilder
@@ -40,13 +41,12 @@ export class ListCommentComponent implements OnInit {
   }
 
   showMore(): void {
-    this.displayedItems += 5; // Increase the number of items displayed
+    this.displayedItems += 5; 
   }
-
+  
   showLess(): void {
-    this.displayedItems = this.initialItems; // Reset to initial number of items
+    this.displayedItems = this.initialItems; 
   }
-  // For use after when we want to get by backend ...
   getComment(): void {
     this.commentService.getCommentByPost().subscribe({
       next: (comments: Comment[]) => (this.comments = comments),

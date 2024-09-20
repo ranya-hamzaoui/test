@@ -1,22 +1,22 @@
 <li class="post-comment">
   <div class="comet-avatar">
-    <!-- <img src="http://localhost:3200/getfile/{{currentUser.image}}" alt=""> -->
-    <img src="assets/images/resources/nearly1.jpg" alt="userConnect" />
+     <img  crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{user.photo}}" alt="userConnect">
   </div>
   <div class="post-comt-box">
-    <form method="post">
+    <form>
       <textarea
         placeholder="Post your comment"
         [(ngModel)]="text"
         name="text"
       ></textarea>
     </form>
-    <button
-      class="btn new-poxtbox post-btn"
-      class="active"
+    <div class="d-flex justify-content-end">
+      <button
+      style="border-radius: 5px; background-color: #23D2E2;border-color:#23D2E2; font-weight: bold; color: whitesmoke;"
       (click)="addComment()"
-    >
-      add
+      > add Comment
     </button>
+    </div>
   </div>
+
 </li>

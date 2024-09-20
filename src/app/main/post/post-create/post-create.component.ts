@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PostService } from 'src/app/shared/services/post.service';
 
@@ -7,19 +7,16 @@ import { PostService } from 'src/app/shared/services/post.service';
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css'],
 })
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent {
   @Output('newPost') newPost = new EventEmitter<boolean>();
 
   fileToUpload: Array<File> = [];
   description: string = '';
   postPicture!: File;
-
   constructor(
     private postService: PostService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
   ) {}
-  ngOnInit(): void {}
-
   HandleFile(event: any) {
     this.fileToUpload = <Array<File>>event.target.files;
     if (event.target.files) {

@@ -8,14 +8,27 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
+  
+  idProfile!: string;
+  private apiUrl = `${environment.baseurl}`;
+
   constructor(protected http: HttpClient) {}
 
-  private apiUrl = `${environment.baseurl}`;
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
-
-  getProfile(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/profile`);
+  getProfile(idUser ? : string): Observable<User> {
+    const url = `${this.apiUrl}/profile`
+    return this.http.get<User>(!idUser ? `${url}` : `${url}/${this.idProfile}`);
   }
+  setUserIdProfile(idUser : string){
+   this.idProfile = idUser
+  }
+  getUserIdProfile(){
+    return this.idProfile 
+   }
+   updatePicture(data:unknown){
+    return  this.http.put(`${this.apiUrl}/users/updatePicture`, data);
+   }
 }
+

@@ -225,7 +225,7 @@
                     <div class="col-lg-8 col-md-6 mt-2">
                       <ul class="social-reg">
                         <li>
-                          <button type="button" (click)="resetForm()">
+                          <button [routerLink]="['/']" routerLinkActive="router-link-active"  type="button" (click)="resetForm()">
                             cancel
                           </button>
                         </li>

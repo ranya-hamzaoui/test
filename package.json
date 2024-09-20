@@ -7,7 +7,7 @@
     "build": "ng build --configuration=production --base-href /test/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint --fix",
+    "lint": "ng lint",
     "lint:fix": "ng lint --fix",
     "format": "prettier --write 'src/**/*.{ts,html,css}'",
     "pre-commit": "pretty-quick --staged",
@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "eslint --fix",
+      "eslint",
       "prettier --write",
       "git add"
     ],

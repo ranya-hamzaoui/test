@@ -2,10 +2,9 @@
   <h6 class="text-center">No Comments <i></i>.</h6>
 </div>
 <div class="container mt-4" *ngIf="comments && comments.length > 0">
-  <div class="d-flex" *ngFor="let comment of comments.slice(0, displayedItems)">
+  <div class="d-flex px-2 mb-2" style="background-color: honeydew;" *ngFor="let comment of comments.slice(0, displayedItems)">
     <div class="comet-avatar">
-      <!-- <img src="http://localhost:3200/getfile/" alt=""> -->
-      <img src="assets/images/resources/nearly1.jpg" alt="" class="src" />
+      <img crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{comment?.author?.photo}}"> 
     </div>
 
     <div class="we-comment">
@@ -19,16 +18,21 @@
                 Delete Comment</a
               >
             </li>
+            <li>
+              <i class="fa fa-trash"></i>
+              <a type="button" type="button">
+                Edit Comment</a
+              >
+            </li>
           </ul>
         </div>
       </div>
       <h5>
-        <a href="time-line.html" title="">{{ comment.user }}</a>
+        <a href="time-line.html" title="">{{ comment?.author?.name }}</a>
       </h5>
       <br />
-      <p style="color: gray">{{ comment?.text }}</p>
-      <!-- <input type="text" [value]="comment.text" [id]="comment._id" disabled> -->
       <div class="inline-itms">
+        <input style="color: gray" class="inline-itms py-1" type="text" [value]="comment.text" [id]="comment._id" disabled>
         <span>{{ comment?.createdAt | date: 'yyyy-MM-dd HH:mm' }}</span>
       </div>
     </div>

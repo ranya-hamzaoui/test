@@ -4,6 +4,7 @@ import { PostService } from 'src/app/shared/services/post.service';
 import { Comment, Post } from 'src/app/core/models';
 import { LikeService } from 'src/app/shared/services/like.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-post-list',
@@ -11,12 +12,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit {
-  @Input() posts!: Post[];
+  @Input('posts') posts!: Post[];
   @Input('comments') comments: Comment[] = [];
   @Input() loading: boolean = false;
   @Output('changePost') changePost = new EventEmitter<boolean>();
   closeResult = '';
-
+  urlFile = environment.baseurl + '/getImageFile'
   selectedPostId!: any;
   postObj: Post = {
     _id: '',
@@ -30,7 +31,7 @@ export class PostListComponent implements OnInit {
   };
   postLikers: any;
   noMore: boolean = false;
-
+  urlImage = environment.baseurl + '/getImageFile';
   constructor(
     private postService: PostService,
     private modalService: NgbModal,

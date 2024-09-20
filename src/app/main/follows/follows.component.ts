@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/core/models';
 import { FollowService } from 'src/app/shared/services/follow.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-follows',
@@ -10,31 +11,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./follows.component.css'],
 })
 export class FollowsComponent implements OnInit {
+  urlImage :string = environment.baseurl + '/getImageFile';
   follows: User[] = [];
-  fakefollowsold = [
-    {
-      _id: '1111',
-      username: 'rania',
-      email: 'rania@gmail.com',
-      image: 'string',
-      Gender: 'Femme',
-    },
-    {
-      _id: '1111',
-      username: 'rania',
-      email: 'rania@gmail.com',
-      image: 'string',
-      Gender: 'Femme',
-    },
-    {
-      _id: '1111',
-      username: 'rania',
-      email: 'rania@gmail.com',
-      image: 'string',
-      Gender: 'Femme',
-    },
-  ];
-  fakefollows: any;
   constructor(
     private followServ: FollowService,
     private toastService: ToastrService,
@@ -42,32 +20,30 @@ export class FollowsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.getAllUsers();
     this.getAllNotFollows();
   }
 
   getAllNotFollows(): void {
     this.followServ.getNotFollowed().subscribe((resp: any) => {
       this.follows = resp['data'];
-      console.log('dataaaaa', resp['data']);
     });
   }
   getAllUsers(): void {
     this.userService.getUsers().subscribe((resp: any) => {
-      this.follows = resp['data']['users'];
+      this.follows = resp['data']['users'] as User [];
     });
   }
   addFollow = (follow: any): void => {
     this.followServ.addFollow(follow).subscribe(
-      (res: any) => {
+      () => {
         this.getAllNotFollows();
         this.toastService.success('follow is Done');
       },
-      (err) => this.toastService.error('Failed to follow')
+      () => this.toastService.error('Failed to follow')
     );
   };
   unFollow = (idFollow: any) => {
-    this.followServ.deleteFollow(idFollow).subscribe((res: any) => {
+    this.followServ.deleteFollow(idFollow).subscribe(() => {
       this.getAllNotFollows();
     });
   };

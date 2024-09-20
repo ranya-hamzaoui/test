@@ -1,0 +1,73 @@
+<app-nav></app-nav>
+<section>
+        <div class="gap2 gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row merged20" id="page-contents">
+                            <div class="user-profile">
+                                <figure>
+                                    <div class="edit-pp">
+                                        <label class="fileContainer">
+                                            <i class="fa fa-camera"></i>
+                                            <input type="file" (change)="onFileSelected($event)" >
+                                        </label>
+                                    </div>
+                                    <img src="assets/images/resources/blur-image2.jpg" alt="">
+                                    <!-- <img src="http://localhost:3200/getfile/{{user?.imageCover}}"  alt=""> -->
+
+                                    <ul class="profile-controls">
+                                        <li><a (click)="Traiter()"  [ngClass]="{'abonne':isAbonne(),'Notabonne':!isAbonne()}"
+                                            title="Add friend" data-toggle="tooltip"><i  class="fa fa-user-plus"></i></a></li>
+                                    </ul>
+                               
+                                </figure>
+                                <div class="profile-section">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3" *ngIf="user">
+                                            <div class="profile-author">
+                                                <div class="profile-author-thumb">
+                                                    <img *ngIf="!imgFile"  crossOrigin ="anonymous" alt="author" src="{{urlFile}}/{{user.photo}}" /> 
+                                                    <img *ngIf="imgFile" [src]="imgFile" alt="Selected image preview" />
+                                                    <div class="edit-dp">
+                                                        <label class="fileContainer">
+                                                            <i class="fa fa-camera"></i>
+                                                            <input type="file" (change)="onFileSelected($event)"  >
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="author-content">
+                                                    <a class="h4 author-name" routerLink="/profile/{{user?._id}}" >{{user?.name}}</a>
+                                                    <div class="country">{{user?.email}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-10 col-md-9">
+                                            <ul class="profile-menu">
+                                                <li>
+                                                    <a class="" routerLinkActive="active"  (click)="goToAbout(user?._id)">About</a>
+                                                </li>
+                                                <li>
+                                                    <a class="" routerLinkActive="active"  routerLink="/profile/{{user?._id}}/myabonnes">Friends</a>
+                                                </li>
+                                                <li>
+                                                    <a class="" routerLinkActive="active" *ngIf="isUserConnect()"  routerLink="/profile/{{user?._id}}/edit">Edit Profile</a>
+                                                </li>
+                                            </ul>
+                                            <ol class="folw-detail">
+                                                <li><span>Posts</span><ins>{{totalPosts}}</ins></li>
+                                                <li><span>Followers</span><ins>{{totalFollowers}}K</ins></li>
+                                                <li><span>Following</span><ins>{{totalFolloweds}}</ins></li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+               <router-outlet>
+               </router-outlet>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

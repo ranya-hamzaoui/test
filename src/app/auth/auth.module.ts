@@ -13,7 +13,7 @@ import { ResetPasswdComponent } from './reset-passwd/reset-passwd.component';
     LoginComponent,
     RegisterComponent,
     ForgetPasswdComponent,
-    ResetPasswdComponent,
+    ResetPasswdComponent
   ],
   imports: [
     CommonModule,
