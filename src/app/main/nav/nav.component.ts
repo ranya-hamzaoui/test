@@ -12,7 +12,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class NavComponent implements OnInit {
   refreshToken: string = '';
   user!: User;
-
+  menuOpen = false;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -23,6 +23,10 @@ export class NavComponent implements OnInit {
     this.getProfile();
   }
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+  
   logout(): void {
     this.authService.removeToken();
     this.router.navigateByUrl('/');
