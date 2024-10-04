@@ -12,6 +12,8 @@ import { AboutComponent } from './profile/about/about.component';
 import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
 import { MyabonnesComponent } from './profile/myabonnes/myabonnes.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChatComponent } from './chat/chat.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProfileComponent,
     AboutComponent,
     ProfileEditComponent,
-    MyabonnesComponent
+    MyabonnesComponent,
+    ChatComponent,
+    NotificationsComponent
   ],
   imports: [
     CommonModule,

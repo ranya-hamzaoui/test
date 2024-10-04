@@ -25,7 +25,7 @@ export class CommentService {
   }
 
   updateComment(id: string, data: any): Observable<Comment> {
-    return this.http.put<Comment>(`${environment.baseurl}/update/${id}`, data);
+    return this.http.put<Comment>(`${this.baseUrl}/${id}`, data);
   }
   deleteComment(id: string): Observable<Comment> {
     return this.http.delete<Comment>(`${this.baseUrl}/${id}`);

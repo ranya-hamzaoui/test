@@ -17,7 +17,7 @@ export class FollowService {
   }
 
   deleteFollow(idFollow: User): Observable<any> {
-    return this.http.delete(this.url + 'unfollow/' + idFollow);
+    return this.http.delete(`${environment.baseurl}/unfollow/`+ idFollow);
   }
 
   getMyFollows(page = 1): Observable<User[]> {
@@ -26,7 +26,7 @@ export class FollowService {
   }
 
   getFollowing(userId = null, page = 1): Observable<any> {
-    const url = this.url+'/1';
+    const url = this.url+'ing/1';
     return this.http.get<User[]>(url);
   }
 

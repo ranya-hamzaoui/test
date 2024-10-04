@@ -106,6 +106,44 @@
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12">
                       <input
+                        formControlName="phone"
+                        class="mb-2"
+                        type="email"
+                        placeholder=" Phone "
+                        [ngClass]="{
+                          'is-invalid': submitted && f['phone'].errors,
+                        }"
+                      />
+                      <div
+                        *ngIf="submitted && f['phone'].errors"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="f['phone'].errors?.['required']">
+                          phone is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <input
+                        formControlName="job"
+                        class="mb-2"
+                        type="text"
+                        placeholder=" Job "
+                        [ngClass]="{
+                          'is-invalid': submitted && f['job'].errors,
+                        }"
+                      />
+                      <div
+                        *ngIf="submitted && f['job'].errors"
+                        class="invalid-feedback"
+                      >
+                        <div *ngIf="f['job'].errors?.['required']">
+                          Job is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                      <input
                         formControlName="password"
                         class="mb-2"
                         type="password"

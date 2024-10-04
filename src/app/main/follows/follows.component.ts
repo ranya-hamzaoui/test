@@ -28,11 +28,7 @@ export class FollowsComponent implements OnInit {
       this.follows = resp['data'];
     });
   }
-  getAllUsers(): void {
-    this.userService.getUsers().subscribe((resp: any) => {
-      this.follows = resp['data']['users'] as User [];
-    });
-  }
+
   addFollow = (follow: any): void => {
     this.followServ.addFollow(follow).subscribe(
       () => {
@@ -41,10 +37,5 @@ export class FollowsComponent implements OnInit {
       },
       () => this.toastService.error('Failed to follow')
     );
-  };
-  unFollow = (idFollow: any) => {
-    this.followServ.deleteFollow(idFollow).subscribe(() => {
-      this.getAllNotFollows();
-    });
   };
 }

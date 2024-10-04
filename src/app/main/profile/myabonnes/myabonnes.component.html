@@ -50,7 +50,7 @@
             <span>Followers: 120</span>
           </figure>
           <div class="frnd-meta">
-            <img crossOrigin ="anonymous" alt="author" src="{{urlFile}}/{{follow.followed.photo}}">
+            <!-- <img crossOrigin ="anonymous" alt="author" src="{{urlFile}}/{{follow.followed.photo}}"> -->
             <div class="frnd-name">
               <a href="#" title=""> {{follow.followed.name}} </a>
               <span>California, USA</span>
@@ -62,10 +62,11 @@
               <li><span>Post:</span> 250</li>
               <li><span>Since:</span> {{follow.createdAt | date }} </li>
             </ul>
-            <a class="send-mesg" href="#" title="">Message</a>
+            <a class="send-mesg" [routerLink]="['/chats']" routerLinkActive="router-link-active"  title="">Message</a>
             <div class="more-opotnz">
               <i class="fa fa-ellipsis-h"></i>
               <ul>
+                <li (click)="unFollow(follow.followed._id)"><a  title="">UnFollow</a></li>
                 <li><a href="#" title="">Block</a></li>
                 <li><a href="#" title="">UnBlock</a></li>
                 <li><a href="#" title="">Mute Notifications</a></li>

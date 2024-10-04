@@ -11,4 +11,6 @@ export interface User {
   Gender : string;
   createdAt: Date;
   photo : string;
+  phone : string;
+  job : string
 }
