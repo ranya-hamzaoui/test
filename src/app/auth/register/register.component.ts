@@ -30,6 +30,8 @@ export class RegisterComponent {
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
+        phone: ['', Validators.required],
+        job: ['', Validators.required],
         dateBirth: ['', Validators.required],
         gender: ['', Validators.required],
       },

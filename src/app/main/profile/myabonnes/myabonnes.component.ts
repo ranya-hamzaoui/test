@@ -27,4 +27,10 @@ export class MyabonnesComponent implements OnInit {
     })
   }
 
+  unFollow = (idFollow: any) => {
+    this.followServ.deleteFollow(idFollow).subscribe(() => {
+      this.getAllFollows();
+    });
+  };
+
 }

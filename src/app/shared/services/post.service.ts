@@ -18,17 +18,25 @@ export class PostService {
    */
   getFollowsPosts(page: number): Observable<Post[]> {
     return this.http
-      .get<Post[]>(`${environment.baseurl}/follow-post/:${page}`)
+      .get<Post[]>(`${environment.baseurl}/posts-follow/${page}`)
       .pipe(map((data: any) => data));
   }
-
+  /**
+   * Get list new.
+   * @return {Observable<Post>} List placeholder.
+   */
+  getMyPostsByLike(page: number): Observable<Post[]> {
+    return this.http
+      .get<Post[]>(`${this.baseUrl}-user/${page}`)
+      .pipe(map((data: any) => data));
+  }
   /**
    * Get list new.
    * @return {Observable<Post>} List placeholder.
    */
   getPostsByLike(page: number): Observable<Post[]> {
     return this.http
-      .get<Post[]>(`${this.baseUrl}/user-like/${page}`)
+      .get<Post[]>(`${this.baseUrl}-like/${page}`)
       .pipe(map((data: any) => data));
   }
   /**

@@ -14,7 +14,7 @@
                 </li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane fade" id="edit-profile">
+                <div class="tab-pane active" id="edit-profile">
                     <div class="set-title">
                         <h5>Edit Profile</h5>
                     </div>
@@ -26,22 +26,20 @@
                             </div>
                             <div>
                                 <label>date birth</label>
-                                <input formControlName="dateBirth" class="mb-2" type="date" placeholder="date of Birth"
-                                    required minlength="6">
+                                <input formControlName="dateBirth" class="mb-2" type="date" placeholder="date of Birth" required>
                             </div>
                             <div>
                                 <label>Gender</label>
                                 <div class="form-radio">
                                     <div class="radio">
                                         <label>
-                                            <input formControlName="Gender" value="Male" type="radio" checked="checked"
-                                                name="Gender"><i class="check-box"></i>Male
+                                            <input formControlName="gender" value="male" [checked]="user.gender=='male'" type="radio" name="gender"><i class="check-box"></i>Male
                                         </label>
                                     </div>
                                     <div class="radio">
                                         <label>
-                                            <input value="Female" formControlName="Gender" type="radio" name="Gender"><i
-                                                class="check-box"></i>Female
+                                            <input value="female" formControlName="gender" [checked]="user.gender=='female'" type="radio" name="gender"><i
+                                                class="check-box"></i>female
                                         </label>
                                     </div>
                                 </div>

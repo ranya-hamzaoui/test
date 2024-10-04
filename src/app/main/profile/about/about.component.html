@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-4 col-md-4">
     <aside class="sidebar">
-      <div class="central-meta stick-widget">
+      <div class="central-meta stick-widget" *ngIf="user">
         <span class="create-post">Personal Info </span>
         <div class="personal-head">
              <span class="f-title"><i class="fa fa-user"></i> About Me:</span>
@@ -14,7 +14,7 @@
           </p>
           <span class="f-title"><i class="fa fa-phone"></i> Phone Number:</span>
           <p>
-            +1-989-232435234
+            +1-989- {{user.phone}}
           </p>
           <span class="f-title"><i class="fa fa-male"></i> Gender:</span>
           <p>
@@ -27,7 +27,7 @@
           </p>
                <span class="f-title"><i class="fa fa-briefcase"></i> Occupation:</span>
           <p>
-            UI/UX Designer
+            {{user.job}}
           </p>
           <span class="f-title"><i class="fa fa-handshake-o"></i> Joined:</span>
           <p>

@@ -32,6 +32,7 @@ export class PostListComponent implements OnInit {
   postLikers: any;
   noMore: boolean = false;
   urlImage = environment.baseurl + '/getImageFile';
+  showPost: any[] = [];
   constructor(
     private postService: PostService,
     private modalService: NgbModal,
@@ -46,18 +47,25 @@ export class PostListComponent implements OnInit {
   onDelete(post: Post): void {
     this.selectedPostId = post._id;
     this.postService.deletePost(this.selectedPostId).subscribe({
-      next: () => this.toastService.success('Post deleted successfully'),
+      next: () => { 
+        this.changePost.emit(true);
+        this.toastService.success('Post deleted successfully'
+        )},
       error: (err) => this.toastService.error('Failed to delete post'),
     });
   }
 
-  onEdit(post: Post): void {
+  onEdit(post: Post,contentEdit : any): void {
     this.postObj = { ...post };
+    this.open(contentEdit)
   }
   updatePost(): void {
     this.postService.updatePost(this.postObj._id, this.postObj).subscribe(
       (resp: any) => {
         this.toastService.success('Post changed ssuccefuly');
+        this.modalService.dismissAll()
+        this.changePost.emit(true);
+        
       },
       (err: any) => {
         this.toastService.error('Failed to update post');
@@ -140,5 +148,8 @@ export class PostListComponent implements OnInit {
       },
       error: (err) => console.error('Error fetching likes', err),
     });
+  }
+  toggleComment(i:any){
+   this.showPost[i] =  !this.showPost[i]
   }
 }

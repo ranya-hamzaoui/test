@@ -1,13 +1,10 @@
 <div class="loading" *ngIf="loading">
   <img src="assets/images/lg.dual-ring-loader.gif" />
 </div>
-
-<div *ngIf="posts && posts.length == 0" class="col-lg-12 no-publications">
-  This users doesn´t have
-  <i>any</i>
-  post.
+<div *ngIf="posts && posts.length == 0" class="d-flex justify-content-center no-publications bg-light py-5"> 
+    no  posts.
 </div>
-<div id="publications" *ngIf="posts && posts.length > 0">
+<!-- <div id="publications" *ngIf="posts && posts.length > 0">
   <div *ngFor="let post of posts">
     <div class="loadMore">
       <div class="central-meta item">
@@ -15,17 +12,15 @@
           <div class="friend-info">
             <figure>
               <img  crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{post.user.photo}}">
-              <!-- <img  crossOrigin ="anonymous" alt="author" [src]="post.user?.photo ? 'http://localhost:4000/api/getImageFile/{{post.user.photo}}' : 'assets/images/resources/ceo1.jpg' "> -->
             </figure>
             <div class="friend-name">
               <div class="more">
                 <div class="more-post-optns">
                   <i class="ti-more-alt"></i>
-                  <!-- <ul>
-                                        <li>
-                                            <i class="fa fa-pencil-square-o"></i>
-                                            <a (click)="onEdit(post);open(contentEdit)" type="button" data-toggle="modal" data-target="#exampleModal">
-                                                Edit Post</a>
+                  <ul>
+                   <li>
+                      <i class="fa fa-pencil-square-o"></i>
+                        <a (click)="onEdit(post);open(contentEdit)" type="button" data-toggle="modal" data-target="#exampleModal"> Edit Post</a>
                                         </li>
                                         <li>
                                             <i class="fa fa-trash"></i>
@@ -36,13 +31,9 @@
                                         <li class="bad-report">
                                             <i class="fa fa-flag"></i>Report Post
                                         </li>
-                                    </ul> -->
+                  </ul>
                 </div>
               </div>
-              <ins>
-                <!-- <a [routerLink]="['/profile', post?.user?._id]">
-                                    {{ post?.user }}</a> -->
-              </ins>
               <span>
                 <i class="fa fa-globe"></i>
                 {{ post?.createdAt | date: 'short' }}
@@ -123,8 +114,64 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
+<div id="publications" *ngIf="posts && posts.length > 0"> 
+<div class="d-flex justify-content-center row my-3" *ngFor="let post of posts; index as i">
+      <div class="col-md-12">
+          <div class="d-flex flex-column comment-section">
+              <div class="bg-white p-2">
+                <div class="more">
+                  <div class="more-post-optns">
+                    <i class="ti-more-alt"></i>
+                    <ul>
+                                          <li>
+                                              <i class="fa fa-pencil-square-o"></i>
+                                              <a (click)="onEdit(post,contentEdit)" type="button" data-toggle="modal" data-target="#exampleModal">
+                                                  Edit Post</a>
+                                          </li>
+                                          <li>
+                                              <i class="fa fa-trash"></i>
+                                              <a (click)="onDelete(post)" type="button">
+                                                  Delete Post</a>
+                                          </li>
+  
+                                          <li class="bad-report">
+                                              <i class="fa fa-flag"></i>Report Post
+                                          </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-flex flex-row user-info">
+                    <!-- <img  crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{post.user.photo}}"> -->
+                    <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+                    <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold name">{{post.user.name}}</span><span class="date text-black-50" style="font-weight: bolder;">Shared publicly - {{ post?.createdAt | date: 'short' }} </span></div>
+                  </div>
+                  <div class="mt-2">
+                      <p class="comment-text"> 
+                        {{post.description}}
+                        </p>
+                  </div>
+              </div>
+              <div class="bg-white">
+                  <div class="d-flex flex-row fs-12">
+                      <div class="like p-2 cursor" (click)="toggleLike(post)" > <i class="fa fa-thumbs-o-up" [ngStyle]="{'color': post?.likedByMe? 'red': 'gray',}" [ngClass]="post?.likedByMe ? 'fa-thumbs-o-up' : 'fa-thumbs-o-down'"></i><span class="ml-1">  {{ post?.likedByMe ? post?.likeCount : '' }} {{ post?.likedByMe ? 'Like' : 'unLike' }}</span></div>
+                      <div class="like p-2 cursor" (click)="toggleComment(i)" ><i class="fa fa-commenting-o"></i> <ins class="comment-icon ml-1">{{ post?.comments?.length }}</ins><span class="ml-1">Comment</span></div> 
+                      <div class="like p-2 cursor"><i class="fa fa-share"></i><span class="ml-1">Share</span></div>
+                  </div>
+              </div>
+              <app-comment-create
+                      (createComment)="handleChange($event)"
+                      [post]="post"
+              ></app-comment-create> 
+              <app-list-comment *ngIf="showPost[i]"
+              (deleteComment)="handleChange($event)"
+              [comments]="post.comments"
+            ></app-list-comment>
+          </div>
+      </div>
+</div>
+</div>
 <!-- Modal UPDATE -->
 <ng-template #contentEdit let-modal>
   <div
@@ -154,45 +201,34 @@
               <textarea
                 rows="2"
                 placeholder="Share some what you are thinking?"
-                [(ngModel)]="postObj.content"
-                name="content"
+                [(ngModel)]="postObj.description"
+                name="description"
               ></textarea>
-
-              <div class="attachments">
-                <ul>
-                  <li>
-                    <i class="fa fa-image"></i>
-                    <label class="fileContainer">
-                      <input type="file" />
-                    </label>
-                  </li>
-                </ul>
-              </div>
             </form>
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              id="cancel"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
+         
             <button
               (click)="updatePost()"
               type="button"
               class="btn btn-primary"
             >
-              Update
-            </button>
+              Update Post
+            </button> 
+            <button
+            type="button"
+            id="cancel"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            Cancel
+          </button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </ng-template>
-
 <ng-template #content let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">

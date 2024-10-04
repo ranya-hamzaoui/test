@@ -9,7 +9,12 @@
           <app-post-list
             (changePost)="handleChange($event)"
             [posts]="posts"
-          ></app-post-list>
+          ></app-post-list> 
+          <ul id="pagination" class="my-5 py-5" *ngIf="pager.totalPages >1">
+            <li *ngIf="pager.currentPage > 1" ><a class="" (click)="setpage(pager.currentPage-1)">«</a></li>
+            <li *ngFor="let p of pager['pages']" ><a [ngClass]="p==pager.currentPage ? 'active' : 'inactive' " (click)="setpage(p)">{{p}}</a></li>
+            <li *ngIf="pager.currentPage != pager.totalPages"><a (click)="setpage(pager.currentPage+1)">»</a></li>
+          </ul>
         </div>
         <div class="col-lg-4">
           <aside class="sidebar static right">

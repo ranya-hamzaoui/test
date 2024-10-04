@@ -27,6 +27,9 @@ export class UserService {
   getUserIdProfile(){
     return this.idProfile 
    }
+   updateInfo(data:unknown){
+    return  this.http.put(`${this.apiUrl}/editinfo`, data);
+   }
    updatePicture(data:unknown){
     return  this.http.put(`${this.apiUrl}/users/updatePicture`, data);
    }

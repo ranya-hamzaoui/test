@@ -1,7 +1,4 @@
-.color {
-  background-color: white;
-  height: 8cm;
-}
+
 #pagination {
   margin: 0;
   padding: 0;
@@ -25,9 +22,10 @@
 
 }
 #pagination li a.active {
-  background-color: rgb(96, 176, 226);
+  background-color: #4caf50;
   color: #fff
 }
 #pagination li a:hover:not(.active) {
   background-color: #ddd;
 }
+

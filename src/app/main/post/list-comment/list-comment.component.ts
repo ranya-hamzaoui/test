@@ -13,24 +13,19 @@ export class ListCommentComponent implements OnInit {
   @Input('comments') comments!: Comment[];
   @Output('deleteComment') deleteComment = new EventEmitter<any>();
 
-  formValue!: FormGroup;
-  CommentObj!: Comment;
+  textComment: string ='new cccc';
 
   initialItems = 3;
   displayedItems = this.initialItems;
   urlImage = environment.baseurl + '/getImageFile';
+  EditComment: any[] = []
   constructor(
     private commentService: CommentService,
     private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {
-    this.formValue = this.formBuilder.group({
-      id: [''],
-      content: [''],
-      image: '',
-    });
-  }
+  ngOnInit(): void {}
+
   onDelete(commentId: string): void {
     this.commentService.deleteComment(commentId).subscribe({
       next: () => {
@@ -52,5 +47,17 @@ export class ListCommentComponent implements OnInit {
       next: (comments: Comment[]) => (this.comments = comments),
       error: (err) => console.error('Error fetching comments:', err),
     });
+  }
+  updateComment(comment: Comment): void {
+    this.commentService.updateComment(comment._id,{text:comment.text}).subscribe({
+      next: () => {
+        this.deleteComment.emit(true);
+      },
+      error: (err) => console.error('Error deleting comment:', err),
+    });
+  }
+
+  editComment(i :any) {
+    this.EditComment[i] = true
   }
 }

@@ -1,12 +1,13 @@
-<div *ngIf="comments && comments.length == 0" class="col-lg-12 no-publications">
-  <h6 class="text-center">No Comments <i></i>.</h6>
+<div *ngIf="comments && comments.length == 0" class="container bg-white col-lg-12 no-publications">
+  <h6 class="text-center py-3 text-secondary">No Comments <i></i>.</h6>
 </div>
-<div class="container mt-4" *ngIf="comments && comments.length > 0">
-  <div class="d-flex px-2 mb-2" style="background-color: honeydew;" *ngFor="let comment of comments.slice(0, displayedItems)">
+<div class="container bg-white " *ngIf="comments && comments.length > 0">
+  <div class="d-flex px-2 mb-2 bg-light"
+  *ngFor="let comment of comments.slice(0, displayedItems);index as i">
     <div class="comet-avatar">
-      <img crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{comment?.author?.photo}}"> 
+      <!-- <img crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{comment?.author?.photo}}">  -->
+      <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
     </div>
-
     <div class="we-comment">
       <div class="more">
         <div class="more-post-optns">
@@ -20,7 +21,7 @@
             </li>
             <li>
               <i class="fa fa-trash"></i>
-              <a type="button" type="button">
+              <a (click) ="editComment(i)" type="button" type="button">
                 Edit Comment</a
               >
             </li>
@@ -32,8 +33,14 @@
       </h5>
       <br />
       <div class="inline-itms">
-        <input style="color: gray" class="inline-itms py-1" type="text" [value]="comment.text" [id]="comment._id" disabled>
-        <span>{{ comment?.createdAt | date: 'yyyy-MM-dd HH:mm' }}</span>
+        <input style="color: gray" class="inline-itms py-1" type="text" 
+         [(ngModel)]="comment.text" [id]="comment._id" [disabled]="!EditComment[i]">
+        <span *ngIf="!EditComment[i]">{{ comment?.createdAt | date: 'yyyy-MM-dd HH:mm' }}</span>
+      </div>
+      <div class="mt-2 text-right" *ngIf="EditComment[i]">
+        <button (click)="updateComment(comment)" class="btn btn-primary btn-sm shadow-none" type="button">
+          edit comment</button>
+          <button (click)="EditComment[i]=false" class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button>
       </div>
     </div>
   </div>
