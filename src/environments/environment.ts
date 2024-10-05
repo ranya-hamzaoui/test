@@ -4,8 +4,10 @@
 
 export const environment = {
   production: false,
-  baseurl :'http://localhost:4000/api',
-  // baseurl: 'https://social-media-app-api-rh.onrender.com/api',
+  // baseurl :'http://localhost:4000/api',
+  baseurl: 'https://social-media-app-api-rh.onrender.com/api',
+  webSocketurl: 'https://social-media-app-api-rh.onrender.com',
+
 };
 
 /*
