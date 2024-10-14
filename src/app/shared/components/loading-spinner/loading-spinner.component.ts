@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'wb-loading-spinner',
-  template: '<img *ngIf="loading" src="assets/images/loading.gif" />',
+  selector: 'app-loading-spinner',
+  templateUrl: './loading-spinner.component.html',
+  styleUrls: ['./loading-spinner.component.css']
+
 })
 export class LoadingSpinnerComponent {
-  @Input() loading: boolean = false;
+  @Input() isLoading: boolean = false;
 }

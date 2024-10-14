@@ -4,125 +4,13 @@
 <div *ngIf="posts && posts.length == 0" class="d-flex justify-content-center no-publications bg-light py-5"> 
     no  posts.
 </div>
-<!-- <div id="publications" *ngIf="posts && posts.length > 0">
-  <div *ngFor="let post of posts">
-    <div class="loadMore">
-      <div class="central-meta item">
-        <div class="user-post">
-          <div class="friend-info">
-            <figure>
-              <img  crossOrigin ="anonymous" alt="author" src="{{urlImage}}/{{post.user.photo}}">
-            </figure>
-            <div class="friend-name">
-              <div class="more">
-                <div class="more-post-optns">
-                  <i class="ti-more-alt"></i>
-                  <ul>
-                   <li>
-                      <i class="fa fa-pencil-square-o"></i>
-                        <a (click)="onEdit(post);open(contentEdit)" type="button" data-toggle="modal" data-target="#exampleModal"> Edit Post</a>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-trash"></i>
-                                            <a (click)="onDelete(post)" type="button">
-                                                Delete Post</a>
-                                        </li>
-
-                                        <li class="bad-report">
-                                            <i class="fa fa-flag"></i>Report Post
-                                        </li>
-                  </ul>
-                </div>
-              </div>
-              <span>
-                <i class="fa fa-globe"></i>
-                {{ post?.createdAt | date: 'short' }}
-              </span>
-            </div>
-            <div class="post-meta">
-              <figure>
-                <div class="img-bunch">
-                  <div class="row">
-                    <div
-                      class="col-lg-6 col-md-6 col-sm-6"
-                      style="font-weight: bold"
-                    >
-                      <figure>
-                        {{ post?.description }}
-                        <br />
-                        <a
-                          href="#"
-                          title=""
-                          data-toggle="modal"
-                          data-target="#img-comt"
-                        >
-                          <img crossOrigin ="anonymous" [src]="!post?.photo ? 'assets/images/resources/admin.jpg' : '{{urlImage}}/{{post.photo}}' " alt="" />
-                        </a>
-                      </figure>
-                    </div>
-                    <div class="we-video-info">
-                      <ul>
-                        <li>
-                          <button
-                            class="btn text-white"
-                            (click)="toggleLike(post)"
-                            [ngStyle]="{
-                              'background-color': post?.likedByMe
-                                ? 'red'
-                                : 'gray',
-                            }"
-                          >
-                            <i
-                              class="fa"
-                              [ngClass]="
-                                post?.likedByMe ? 'fa-heart' : 'fa-thumbs-down'
-                              "
-                            ></i>
-                            {{ post?.likedByMe ? post?.likeCount : '' }}
-                          </button>
-                        </li>
-                        <li>
-                          <span class="comment" title="Comments">
-                            <i class="fa fa-commenting"></i>
-                            <ins>{{ post?.comments?.length }}</ins>
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </figure>
-              <div class="coment-area" style="display: block">
-                <ul class="we-comet">
-                  <li class="post-comment">
-                    <app-comment-create
-                      (createComment)="handleChange($event)"
-                      [post]="post"
-                    ></app-comment-create>
-                     <div class="mx-2 px-2 py-1">
-                      <app-list-comment
-                      (deleteComment)="handleChange($event)"
-                      [comments]="post.comments"
-                    ></app-list-comment>
-                     </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div id="publications" *ngIf="posts && posts.length > 0"> 
 <div class="d-flex justify-content-center row my-3" *ngFor="let post of posts; index as i">
       <div class="col-md-12">
           <div class="d-flex flex-column comment-section">
               <div class="bg-white p-2">
                 <div class="more">
-                  <div class="more-post-optns">
+                  <div class="more-post-optns" *ngIf="post.user._id==userId">
                     <i class="ti-more-alt"></i>
                     <ul>
                                           <li>

@@ -22,7 +22,7 @@ import { ResetPasswdComponent } from './reset-passwd/reset-passwd.component';
     AuthRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-  ],
+    HttpClientModule
+    ],
 })
 export class AuthModule {}

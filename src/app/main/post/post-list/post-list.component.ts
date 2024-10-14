@@ -5,6 +5,7 @@ import { Comment, Post } from 'src/app/core/models';
 import { LikeService } from 'src/app/shared/services/like.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -33,15 +34,18 @@ export class PostListComponent implements OnInit {
   noMore: boolean = false;
   urlImage = environment.baseurl + '/getImageFile';
   showPost: any[] = [];
+  userId : string = '' ;
   constructor(
     private postService: PostService,
     private modalService: NgbModal,
     private likeService: LikeService,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private authSrv : AuthService
   ) {}
 
   ngOnInit(): void {
     this.loading = false;
+    this.userId = this.authSrv.getIdentity()!;
   }
 
   onDelete(post: Post): void {

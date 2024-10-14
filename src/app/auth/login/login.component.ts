@@ -22,14 +22,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.formBuilder.group({
-      email: ['rania@gmail.com', [Validators.required, Validators.email]],
+      email: ['john@gmail.com', [Validators.required, Validators.email]],
       password: ['rania2024', [Validators.required]],
     });
   }
 
   login(): void {
     this.submitted = true;
-
     if (this.formLogin.invalid) {
       this.Loading = false;
       this.toastService.error(
@@ -48,7 +47,6 @@ export class LoginComponent implements OnInit {
         );
       },
       (err: unknown) => {
-        console.log('err loginnnnnnnnnn', err);
         this.toastService.error('Authentification Failed', 'Login Failed');
       }
     );

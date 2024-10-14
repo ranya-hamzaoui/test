@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 import { tap, map } from 'rxjs/operators';
 import { LoginRequest } from 'src/app/core/models/login-request';
 import { environment } from 'src/environments/environment';
@@ -112,11 +111,9 @@ export class AuthService {
       })
     );
   }
-
   getIdentity(): string | null {
     return JSON.parse(localStorage.getItem(this.TEXT.currentUser)!)._id ?? null;
   }
-
   getCurrentUser(): any {
     return JSON.parse(localStorage.getItem(this.TEXT.currentUser)!);
   }

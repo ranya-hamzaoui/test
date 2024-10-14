@@ -2,18 +2,18 @@
   <span class="create-post">Create post</span>
   <div class="new-postbox pl-3">
     <figure>
-      <img src="images/resources/admin.jpg" alt="" /> 
+      <img src="images/resources/admin.jpg" alt="" />
     </figure>
-      <form class="d-flex justify-content-center">
-        <textarea
-          rows="2"
-          placeholder="Share some what you are thinking?"
-          class="post-text"
-          name="content"
-          [(ngModel)]="description"
-          required
-        ></textarea>
-      </form>
+    <form class="d-flex justify-content-center">
+      <textarea
+        rows="2"
+        placeholder="Share some what you are thinking?"
+        class="post-text"
+        name="content"
+        [(ngModel)]="description"
+        required
+      ></textarea>
+    </form>
     <div class="attachments">
       <ul class="d-flex justify-content-center">
         <li>
@@ -29,7 +29,13 @@
           </label>
         </li>
       </ul>
-      <button class="post-btn" (click)="savePost()">Post</button>
+      <button class="post-btn"  [disabled]="creatingPost" (click)="savePost()">
+        <ng-container *ngIf="!creatingPost">Post</ng-container>
+        <span
+          class="spinner-border spinner-border-sm"
+          *ngIf="creatingPost"
+        ></span>
+      </button>
       <!-- <button class="post-btn" [disabled]="!description" (click)="savePost()">Post</button> -->
     </div>
   </div>

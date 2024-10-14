@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { PostService } from 'src/app/shared/services/post.service';
 import { TEXT } from '../../shared/constants/text';
 import { ActivatedRoute } from '@angular/router';
+import { Pager } from 'src/app/core/models';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,14 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent implements OnInit, OnDestroy {
   TEXT = TEXT;
   posts: any[] = [];
-  pager = {
+  pager : Pager = {
     currentPage: 1,
     totalPages: 0,
     pages : []
   };
   codePage: string = '';
   private unsubscribe$ = new Subject<void>();
+  loading : boolean = true;
   constructor(private postservice: PostService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
@@ -30,8 +32,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       else 
       this.getFollowingPosts(1)
     });
-
-   
   }
 
   setpage(page : any){
@@ -48,12 +48,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
   setConfigPage(resp : any){
+    this.loading = false;
     this.pager['pages'] = [];
     this.pager["currentPage"] = Number(resp["currentPage"]);
     this.pager["totalPages"] = Number(resp["totals"]);
-    for (let i = 0; i < resp['totals']; i++) {
-      this.pager['pages'].push((i + 1)as never)
-    }
+    this.pager.pages = Array.from({ length: this.pager["totalPages"] }, (_, i) => i + 1);
   }
   getMyPosts(p:any) {
     this.postservice
@@ -66,6 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         (err) => {
           console.log('error', err);
+          this.loading = false;
         }
       );
   }
@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         (err) => {
           console.log('error', err);
+          this.loading = false;
         }
       );
   }
@@ -94,11 +95,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         },
         (err) => {
           console.log('error', err);
+          this.loading = false;
         }
       );
   }
   handleChange(event: boolean): void {
-    // this.getPosts(1);
     this.setpage(1)
   }
   ngOnDestroy(): void {

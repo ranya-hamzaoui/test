@@ -11,7 +11,6 @@ export class SocketService {
   userId= JSON.parse(localStorage.getItem('currentUser')!)._id ;
 
   constructor() {
-    // this.socket = io('http://localhost:4000', {
     this.socket = io(environment.webSocketurl, {
 
       query: {

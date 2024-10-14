@@ -4,19 +4,16 @@
     <div class="col-lg-12">
       <div class="row" id="page-contents">
         <!-- <div class="col-lg-1"></div> -->
-        <div class="col-lg-8">
+        <div class="col-lg-8 mt-2">
           <app-post-create (newPost)="handleChange($event)"></app-post-create>
-          <app-post-list
+          <app-loading-spinner [isLoading]="loading"></app-loading-spinner>
+          <app-post-list *ngIf="!loading"
             (changePost)="handleChange($event)"
             [posts]="posts"
           ></app-post-list> 
-          <ul id="pagination" class="my-5 py-5" *ngIf="pager.totalPages >1">
-            <li *ngIf="pager.currentPage > 1" ><a class="" (click)="setpage(pager.currentPage-1)">«</a></li>
-            <li *ngFor="let p of pager['pages']" ><a [ngClass]="p==pager.currentPage ? 'active' : 'inactive' " (click)="setpage(p)">{{p}}</a></li>
-            <li *ngIf="pager.currentPage != pager.totalPages"><a (click)="setpage(pager.currentPage+1)">»</a></li>
-          </ul>
+          <app-pagination [pager]="pager" (pageChange)="setpage(pager.currentPage)"></app-pagination>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-2">
           <aside class="sidebar static right">
             <div class="widget">
               <app-follows></app-follows>

@@ -9,13 +9,13 @@ import { PostService } from 'src/app/shared/services/post.service';
 })
 export class PostCreateComponent {
   @Output('newPost') newPost = new EventEmitter<boolean>();
-
   fileToUpload: Array<File> = [];
   description: string = '';
   postPicture!: File;
+  creatingPost : boolean = false;
   constructor(
     private postService: PostService,
-    private toastService: ToastrService,
+    private toastService: ToastrService
   ) {}
   HandleFile(event: any) {
     this.fileToUpload = <Array<File>>event.target.files;
@@ -42,6 +42,7 @@ export class PostCreateComponent {
       (res: any) => {
         this.toastService.success('Post Added with Succefuly');
         this.newPost.emit(true);
+        this.creatingPost = false
       },
       (err: any) => {
         console.error('Error creating post:', err);
@@ -53,8 +54,10 @@ export class PostCreateComponent {
   }
 
   savePost(): void {
+    this.creatingPost = true;
     if (!this.description) {
       this.toastService.error('Please provide a description.');
+      this.creatingPost = false;
       return;
     }
     const data = { description: this.description };
@@ -62,11 +65,14 @@ export class PostCreateComponent {
       () => {
         this.newPost.emit(true);
         this.toastService.success('Post added successfully.');
+        this.creatingPost = false;
       },
       (err: any) => {
         this.toastService.error('Failed to add Post.');
+        this.creatingPost = false;
       }
     );
+    this.description = '';
   }
 
   private resetForm(): void {

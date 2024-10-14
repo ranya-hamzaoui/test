@@ -7,7 +7,7 @@ export const environment = {
   // baseurl :'http://localhost:4000/api',
   baseurl: 'https://social-media-app-api-rh.onrender.com/api',
   webSocketurl: 'https://social-media-app-api-rh.onrender.com',
-
+  //webSocketurl : 'http://localhost:4000'
 };
 
 /*

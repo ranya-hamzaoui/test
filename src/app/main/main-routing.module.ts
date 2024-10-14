@@ -19,9 +19,7 @@ const routes: Routes = [
     {path:'',component:AboutComponent},
     {path:'myabonnes',component:MyabonnesComponent},
     {path:'edit',component:ProfileEditComponent},
-    ],component:ProfileComponent}
-
-
+    ],component:ProfileComponent},
 ];
 
 @NgModule({
