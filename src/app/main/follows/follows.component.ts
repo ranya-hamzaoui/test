@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./follows.component.css'],
 })
 export class FollowsComponent implements OnInit {
-  urlImage :string = environment.baseurl + '/getImageFile';
+  urlImage : string = environment.baseurl + '/getImageFile';
   follows: User[] = [];
   constructor(
     private followServ: FollowService,
